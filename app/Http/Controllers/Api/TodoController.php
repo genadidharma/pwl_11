@@ -54,7 +54,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return $this->apiSuccess($todo->load('user'));
     }
 
     /**
@@ -64,7 +64,7 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoRequest $request, Todo $todo)
     {
         //
     }
