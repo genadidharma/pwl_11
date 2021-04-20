@@ -22,7 +22,7 @@ class TodoController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $todos = Todo::with($user)
+        $todos = Todo::with('user')
             ->where('user_id', $user->id)
             ->get();
 
