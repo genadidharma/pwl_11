@@ -24,7 +24,7 @@ class TodoController extends Controller
         $todos = Todo::with($user)
             ->where('user_id', $user->id)
             ->get();
-        
+
         return $this->apiSuccess($todos);
     }
 
@@ -66,7 +66,13 @@ class TodoController extends Controller
      */
     public function update(TodoRequest $request, Todo $todo)
     {
-        //
+        $request->validated();
+        $todo->todo = $request->todo;
+        $todo->label = $request->label;
+        $todo->done = $request->done;
+        $todo->save();
+
+        return $this->apiSuccess($todo->load('user'));
     }
 
     /**
